@@ -11,7 +11,7 @@ using YourBankApi.Services;
 namespace YourBankApi.Controllers
 {
     [ApiController]
-    [Route("api/v3/[controller]")]
+    [Route("api/[controller]")]
     public class Accountcontroller : ControllerBase
     {
         private readonly IAccountRepository _accountRepository;
@@ -102,7 +102,7 @@ namespace YourBankApi.Controllers
 
         [HttpPut]
         [Route("update_account")]
-        public IActionResult updateAccount([FromBody] UpdateAccountModel model)
+        public IActionResult UpdateAccount([FromBody] UpdateAccountModel model)
         {
             if (!ModelState.IsValid)
             {

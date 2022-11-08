@@ -19,6 +19,6 @@ namespace YourBankApi.Models
         [Required]
         [Compare("Pin", ErrorMessage ="Pins do not match")]
         public string ConfirmPin { get; set; }
-        public DateTime DateLastUpdated { get; set; }
+       // public DateTime DateLastUpdated { get; set; }
     }
 }

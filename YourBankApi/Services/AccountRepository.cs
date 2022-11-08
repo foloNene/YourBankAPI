@@ -101,6 +101,10 @@ namespace YourBankApi.Services
         //Crypto method
         private static void CreatePinHash(string pin, out byte[] pinHash, out byte[] pinSalt)
         {
+            if (string.IsNullOrWhiteSpace(pin))
+            {
+                throw new ArgumentNullException("pin");
+            }
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 pinSalt = hmac.Key;
