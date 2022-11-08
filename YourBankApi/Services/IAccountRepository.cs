@@ -10,7 +10,7 @@ namespace YourBankApi.Services
     {
         Account Authenticate(string AccountNmuber, string Pin);
 
-        IEnumerable<Account> GetAllAccounts();
+        Task<IEnumerable<Account>> GetAllAccountsAsync();
 
         Account Create(Account account, string Pin, string ConfirmPin);
 
@@ -18,10 +18,12 @@ namespace YourBankApi.Services
 
         void Delete(int Id);
 
-        Account GetById(int Id);
+        Task<Account> GetByIdAsync(int Id);
 
         Account GetByAccountNumber(string AccounNumber);
 
         bool AccountExists(int id);
+
+        Task<bool> SaveChangesAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace YourBankApi.Services
         public Account Authenticate(string AccountNmuber, string Pin)
         {
             //authenticate
+            if (string.IsNullOrEmpty(AccountNmuber) || string.IsNullOrEmpty(Pin))
+            {
+                return null;
+            }
             //does account exist for that number
             var account = _dbcontext.Accounts.Where(x => x.AccountNumberGenerated == AccountNmuber).SingleOrDefault();
             if (account == null)
@@ -62,6 +67,11 @@ namespace YourBankApi.Services
 
         public Account Create(Account account, string Pin, string ConfirmPin)
         {
+            //Check if pin isn't empty.
+            if (string.IsNullOrWhiteSpace(Pin))
+            {
+                throw new ArgumentNullException("Pin cannot be empty");
+            }
             //Create new Account
             if (_dbcontext.Accounts.Any(x => x.Email == account.Email))
             {
@@ -108,14 +118,14 @@ namespace YourBankApi.Services
             }
         }
 
-        public IEnumerable<Account> GetAllAccounts()
+        public async Task<IEnumerable<Account>> GetAllAccountsAsync()
         {
-            return _dbcontext.Accounts.ToList();
+            return await _dbcontext.Accounts.ToListAsync();
         }
 
-        public Account GetByAccountNumber(string AccounNumber)
+        public  Account GetByAccountNumber(string AccounNumber)
         {
-            var account = _dbcontext.Accounts.Where(x => x.AccountNumberGenerated == AccounNumber).FirstOrDefault();
+            var account = _dbcontext.Accounts.Where(x => x.AccountNumberGenerated == AccounNumber).SingleOrDefault();
 
             if (account == null)
             {
@@ -125,9 +135,11 @@ namespace YourBankApi.Services
             return account;
         }
 
-        public Account GetById(int Id)
+
+
+        public async Task <Account> GetByIdAsync(int Id)
         {
-            var account = _dbcontext.Accounts.Where(x => x.Id == Id).FirstOrDefault();
+            var account =  await _dbcontext.Accounts.FirstOrDefaultAsync(x => x.Id == Id);
 
             if (account == null)
             {
@@ -169,6 +181,12 @@ namespace YourBankApi.Services
             _dbcontext.Accounts.Update(accountToBeUpdated);
             _dbcontext.SaveChanges();
 
+        }
+
+        //To save Trade
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _dbcontext.SaveChangesAsync() > 0);
         }
 
         public bool AccountExists(int id)

@@ -25,7 +25,7 @@ namespace YourBankApi.Controllers
         //register New Account
         [HttpPost]
         [Route("register_new_account")]
-        public IActionResult RegisterNewAccount([FromBody] RegisterNewAccountModel newAccount)
+        public async Task <ActionResult<Account>> RegisterNewAccount([FromBody] RegisterNewAccountModel newAccount)
         {
             if (!ModelState.IsValid)
             {
@@ -34,14 +34,18 @@ namespace YourBankApi.Controllers
 
             //map to account
             var account = _mapper.Map<Account>(newAccount);
-            return Ok(_accountRepository.Create(account, newAccount.Pin, newAccount.ConfirmPin));
+            //Addd
+            var accountToRetrun = _accountRepository.Create(account, newAccount.Pin, newAccount.ConfirmPin);
+           //Save changes
+            await _accountRepository.SaveChangesAsync();
+            return Ok(accountToRetrun);
         }
 
         [HttpGet]
         [Route("get_all_accounts")]
-        public IActionResult GetAllAccounts()
+        public async Task<ActionResult<IEnumerable<Account>>> GetAllAccounts()
         {
-            var allAccounts = _accountRepository.GetAllAccounts();
+            var allAccounts = await _accountRepository.GetAllAccountsAsync();
             var getCleanedAccounts = _mapper.Map<IList<GetAccountModel>>(allAccounts);
             return Ok(getCleanedAccounts);
         }
@@ -55,14 +59,24 @@ namespace YourBankApi.Controllers
                 return BadRequest(model);
             }
 
-            //Map
-            return Ok(_accountRepository.Authenticate(model.AccountNumber, model.Pin));
+            var authResult = _accountRepository.Authenticate(model.AccountNumber, model.Pin);
+
+            if (authResult == null)
+            {
+                return Unauthorized("Invalid Credentials");
+            }
+
+            return Ok(authResult);
         }
 
         [HttpGet]
         [Route("get_by_account_number")]
         public IActionResult GetByAccountNumber(string AccounNumber)
         {
+            if(AccounNumber == null)
+            {
+                return BadRequest();
+            }
             if (!Regex.IsMatch(AccounNumber, @"^[0-9]{10}$"))
             {
                 return BadRequest("Account Number must be 10 digits");
@@ -75,9 +89,13 @@ namespace YourBankApi.Controllers
 
         [HttpGet]
         [Route("get_account_by_id")]
-        public IActionResult GetAccountById(int Id)
+        public async Task <ActionResult<Account>> GetAccountById(int Id)
         {
-            var account = _accountRepository.GetById(Id);
+            var account = await _accountRepository.GetByIdAsync(Id);
+            if (account == null)
+            {
+                return BadRequest("Id cannot be empty");
+            }
             var cleanedAccount = _mapper.Map<GetAccountModel>(account);
             return Ok(cleanedAccount);
         }

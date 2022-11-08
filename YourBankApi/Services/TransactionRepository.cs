@@ -74,7 +74,7 @@ namespace YourBankApi.Services
             try
             {
                 sourceAccount = _accountRepository.GetByAccountNumber(_ourBankSettlementAccount);
-                destinationAccount = _accountRepository.GetByAccountNumber(AccountNumber);
+                destinationAccount =  _accountRepository.GetByAccountNumber(AccountNumber);
 
                 //let's update their account balance
                 sourceAccount.CurrentAccountBalance -= Amount;
@@ -147,7 +147,7 @@ namespace YourBankApi.Services
             try
             {
                 //for deposit, our banksettlement is the distination getting money from the user's account
-                sourceAccount = _accountRepository.GetByAccountNumber(FromAccount);
+                sourceAccount =  _accountRepository.GetByAccountNumber(FromAccount);
                 destinationAccount = _accountRepository.GetByAccountNumber(ToAccount);
 
                 //let's update their account balance

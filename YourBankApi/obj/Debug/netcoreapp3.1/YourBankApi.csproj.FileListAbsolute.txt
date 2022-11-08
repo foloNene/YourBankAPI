@@ -33,7 +33,11 @@ C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Mi
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
@@ -52,6 +56,7 @@ C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\Yo
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.AssemblyInfoInputs.cache
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.AssemblyInfo.cs
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\staticwebassets\YourBankApi.StaticWebAssets.Manifest.cache
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.RazorTargetAssemblyInfo.cache
@@ -59,9 +64,4 @@ C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\Yo
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.dll
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.pdb
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.genruntimeconfig.cache
-C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\USER\Desktop\Project\YourBankApi\YourBankApi\obj\Debug\netcoreapp3.1\YourBankApi.csproj.AssemblyReference.cache
