@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using YourBankApi.DAL;
 using YourBankApi.Models;
 using YourBankApi.Utils;
+using YourBankApi.Entities;
+using YourBankApi.Enums;
 
 namespace YourBankApi.Services
 {
@@ -35,13 +37,33 @@ namespace YourBankApi.Services
         public Response CreateNewTransaction(Transaction transaction)
         {
             Response response = new Response();
-            _dbcontext.Transactions.Add(transaction);
-            _dbcontext.SaveChanges();
-            response.ResponseCode = "00";
-            response.ResponseMessage = "Transaction created successfully!";
-            response.Data = null;
+
+            try
+            {
+                _dbcontext.Transactions.Add(transaction);
+                _dbcontext.SaveChanges();
+                response.ResponseCode = "00";
+                response.ResponseMessage = "Transaction created successfully!";
+                response.Data = null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"AN ERROR OCCURRED => {ex.Message}");
+            }
+
             return response;
         }
+
+        //public Response CreateNewTransaction(Transaction transaction)
+        //{
+        //    Response response = new Response();
+        //    _dbcontext.Transactions.Add(transaction);
+        //    _dbcontext.SaveChanges();
+        //    response.ResponseCode = "00";
+        //    response.ResponseMessage = "Transaction created successfully!";
+        //    response.Data = null;
+        //    return response;
+        //}
 
         public Response FindTransactionByDate(DateTime date)
         {
@@ -58,8 +80,8 @@ namespace YourBankApi.Services
         {
             //Make a deposit....
             Response response = new Response();
-            Account sourceAccount;
-            Account destinationAccount;
+            Account sourceAccount; //The bank Settlement account
+            Account destinationAccount; // Individual.
             Transaction transaction = new Transaction();
 
             //first check that user account owner is valid
@@ -103,7 +125,7 @@ namespace YourBankApi.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError($"AN ERROR OCCURERD..=>{ ex.Message}");
+                _logger.LogError($"AN ERROR OCCURERD.... =>{ ex.Message}");
 
             }
 
@@ -151,8 +173,8 @@ namespace YourBankApi.Services
                 destinationAccount = _accountRepository.GetByAccountNumber(ToAccount);
 
                 //let's update their account balance
-                sourceAccount.CurrentAccountBalance -= Amount;
-                destinationAccount.CurrentAccountBalance += Amount;
+                sourceAccount.CurrentAccountBalance -= Amount; //reduce the transfer amount from the customer's balance.
+                destinationAccount.CurrentAccountBalance += Amount; //addd transfer amount to our target customer's balance
 
                 //check if there is updates
                 if ((_dbcontext.Entry(sourceAccount).State == Microsoft.EntityFrameworkCore.EntityState.Modified) &&
@@ -204,8 +226,8 @@ namespace YourBankApi.Services
 
             //make withdraw...
             Response response = new Response();
-            Account sourceAccount;
-            Account destinationAccount;
+            Account sourceAccount; //individual
+            Account destinationAccount; //the bank settlement Account
             Transaction transaction = new Transaction();
 
             //first check that user account owner is valid

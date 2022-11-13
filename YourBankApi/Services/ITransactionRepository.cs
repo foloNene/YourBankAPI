@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YourBankApi.Entities;
 using YourBankApi.Models;
 
 namespace YourBankApi.Services
@@ -17,8 +18,6 @@ namespace YourBankApi.Services
         Response MakeWithdrawal(string AccountNumber, decimal Amount, string TransactionPin);
 
         Response MakeFundTransfer(string FromAccount, string ToAccount, decimal Amount, string TransactionPin);
-
-
 
     }
 }

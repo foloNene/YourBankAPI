@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using YourBankApi.Entities;
 using YourBankApi.Models;
 using YourBankApi.Services;
 
@@ -36,14 +37,19 @@ namespace YourBankApi.Controllers
             var account = _mapper.Map<Account>(newAccount);
             //Addd
             var accountToRetrun = _accountRepository.Create(account, newAccount.Pin, newAccount.ConfirmPin);
+
+          
            //Save changes
             await _accountRepository.SaveChangesAsync();
-            return Ok(accountToRetrun);
+
+            //Map back to the AccountDto
+            var accountDto = _mapper.Map<AccountDto>(accountToRetrun);
+            return Ok(accountDto);
         }
 
         [HttpGet]
         [Route("get_all_accounts")]
-        public async Task<ActionResult<IEnumerable<Account>>> GetAllAccounts()
+        public async Task<ActionResult<IEnumerable<GetAccountModel>>> GetAllAccounts()
         {
             var allAccounts = await _accountRepository.GetAllAccountsAsync();
             var getCleanedAccounts = _mapper.Map<IList<GetAccountModel>>(allAccounts);
@@ -89,7 +95,7 @@ namespace YourBankApi.Controllers
 
         [HttpGet]
         [Route("get_account_by_id")]
-        public async Task <ActionResult<Account>> GetAccountById(int Id)
+        public async Task <ActionResult<GetAccountModel>> GetAccountById(int Id)
         {
             var account = await _accountRepository.GetByIdAsync(Id);
             if (account == null)

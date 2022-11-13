@@ -7,11 +7,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using YourBankApi.Models;
 using YourBankApi.Services;
+using YourBankApi.Entities;
 
 namespace YourBankApi.Controllers
 {
     [ApiController]
-    [Route("api/v3/[controller]")]
+    [Route("api/[controller]")]
     public class TransactionContoller : ControllerBase
     {
         private readonly ITransactionRepository _transactionRepository;
@@ -38,6 +39,7 @@ namespace YourBankApi.Controllers
 
             return Ok(_transactionRepository.CreateNewTransaction(transaction));
         }
+
 
         [HttpPost]
         [Route("make_desposit")]
@@ -78,5 +80,16 @@ namespace YourBankApi.Controllers
 
             //return Ok(_transactionRepository.MakeFundTransfer(FromAccount, ToAccount, Amount, TransactionPin));
         }
+
+        //[HttpGet]
+        //[Route("get_transaction_byDate")]
+        //public IActionResult GetTransactionByDate(DateTime datetime)
+        //{
+        //    if (datetime == )
+        //    {
+        //        return BadRequest("Invalide");
+        //    }
+        //}
+
     }
 }

@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using YourBankApi.Enums;
 
-namespace YourBankApi.Models
+namespace YourBankApi.Entities
 {
     [Table("Accounts")]
     public class Account
@@ -49,11 +50,5 @@ namespace YourBankApi.Models
 
     }
 
-    public enum AccountType
-    {
-        Savings,
-        Current,
-        Cooperate,
-        Government
-    }
+
 }

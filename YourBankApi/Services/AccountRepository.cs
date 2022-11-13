@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourBankApi.DAL;
-using YourBankApi.Models;
+using YourBankApi.Entities;
 
 namespace YourBankApi.Services
 {
@@ -89,6 +89,7 @@ namespace YourBankApi.Services
 
             account.PinHash = pinHash;
             account.PinSalt = pinSalt;
+            account.AccountName = $"{account.FirstName} {account.LastName}";
 
             //it can be added to db having crypto
             _dbcontext.Accounts.Add(account);
